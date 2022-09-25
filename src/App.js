@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import TopBar from "./components/TopBar";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Policy from "./components/Policy";
+import NavBar from "./components/NavBar";
+import HomeScreen from "./screens/HomeScreen";
+import CartScreen from "./screens/CartScreen";
+import Registe from "./screens/Registe";
+import Login from "./screens/Login";
+import OrderScreen from "./screens/OrderScreen";
+import AdminScreen from "./screens/AdminScreen";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <TopBar />
+      <NavBar />
+      <Switch>
+        <Route path="/admin" component={AdminScreen} />
+        <Route path="/orders" component={OrderScreen} exact />
+        <Route path="/login" component={Login} exact />
+        <Route path="/register" component={Registe} exact />
+        <Route path="/cart" component={CartScreen} exact />
+        <Route path="/about" component={About} exact />
+        <Route path="/contact" component={Contact} exact />
+        <Route path="/policy" component={Policy} exact />
+        <Route path="/" component={HomeScreen} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
